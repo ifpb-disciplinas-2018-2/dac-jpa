@@ -4,15 +4,38 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <!--<provider>org.hibernate.ejb.HibernatePersistence</provider>-->
     <class>br.edu.ifpb.domain.Contato</class>
+    <class>br.edu.ifpb.domain.ConvertLocalDateToLong</class>
+    <class>br.edu.ifpb.domain.ConvertLocalDate</class>
     <class>br.edu.ifpb.domain.Professor</class>
     <class>br.edu.ifpb.domain.Aluno</class>
     <class>br.edu.ifpb.domain.Perfil</class>
     <class>br.edu.ifpb.domain.Tecnico</class>
+    <class>br.edu.ifpb.domain.chave.Telefone</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/dac-jpa-20182"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.password" value="12345"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <!--<property name="javax.persistence.schema-generation.database.action" value="none"/>-->
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="DACPU2" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <!--<provider>org.hibernate.ejb.HibernatePersistence</provider>-->
+    <class>br.edu.ifpb.domain.Contato</class>
+    <class>br.edu.ifpb.domain.ConvertLocalDateToLong</class>
+    <class>br.edu.ifpb.domain.ConvertLocalDate</class>
+    <class>br.edu.ifpb.domain.Professor</class>
+    <class>br.edu.ifpb.domain.Aluno</class>
+    <class>br.edu.ifpb.domain.Perfil</class>
+    <class>br.edu.ifpb.domain.Tecnico</class>
+    <class>br.edu.ifpb.domain.chave.Telefone</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/dac-jpa-20182"/>
+      <property name="javax.persistence.jdbc.user" value="dacjpa20182"/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+      <property name="javax.persistence.jdbc.password" value="dac-jpa-20182"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
       <!--<property name="javax.persistence.schema-generation.database.action" value="none"/>-->
     </properties>

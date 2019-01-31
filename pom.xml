@@ -11,6 +11,7 @@
     <modules>
         <module>jpa-inicial</module>
         <module>dac-atributos</module>
+        <module>jpa-mapeamento</module>
     </modules>
     <dependencies> 
         <dependency>
@@ -27,6 +28,11 @@
             <groupId>org.apache.derby</groupId>
             <artifactId>derbyclient</artifactId>
             <version>10.10.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.1.0.Final</version>
         </dependency>
     </dependencies>
     <properties>

@@ -1,11 +1,15 @@
 package br.edu.ifpb.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import javax.persistence.Convert;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Version;
 
 /**
  * @author Ricardo Job
@@ -26,21 +30,33 @@ public class Aluno implements Serializable {
     private int id;
     private String nome;
     private double cre;
-//    @Embedded
-//    private Endereco endereco;
-//    @Convert(converter = LocalDateConverter.class)
-//    private LocalDate dataDeNascimento;
+    @Embedded
+    private Endereco endereco;
+//    @Convert(converter = ConvertLocalDate.class)
+    @Convert(converter = ConvertLocalDateToLong.class)
+    private LocalDate dataDeNascimento;
 
+    @Version
+    private int versao;
+
+//    @Transient
+//    private int idade;
     public Aluno() {
     }
 
-    private Aluno(String nome, double cre) {
+    private Aluno(String nome, double cre, Endereco end) {
         this.nome = nome;
         this.cre = cre;
+        this.endereco = end;
+        this.dataDeNascimento = LocalDate.now();
     }
 
     public static Aluno of(String nome, double cre) {
-        return new Aluno(nome, cre);
+        return of(nome, cre, Endereco.empty());
+    }
+
+    public static Aluno of(String nome, double cre, Endereco end) {
+        return new Aluno(nome, cre, end);
     }
 
     public int getId() {
@@ -65,6 +81,30 @@ public class Aluno implements Serializable {
 
     public void setCre(double cre) {
         this.cre = cre;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public LocalDate getDataDeNascimento() {
+        return dataDeNascimento;
+    }
+
+    public void setDataDeNascimento(LocalDate dataDeNascimento) {
+        this.dataDeNascimento = dataDeNascimento;
+    }
+
+    public int getVersao() {
+        return versao;
+    }
+
+    public void setVersao(int versao) {
+        this.versao = versao;
     }
 
 }

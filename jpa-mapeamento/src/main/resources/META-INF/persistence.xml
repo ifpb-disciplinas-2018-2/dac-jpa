@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="ExemploPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>br.edu.ifpb.domain.Endereco</class>
+    <class>br.edu.ifpb.domain.Funcionario</class>
+    <class>br.edu.ifpb.domain.Dependente</class>
+    <class>br.edu.ifpb.domain.Projeto</class>
+    <class>br.edu.ifpb.domain.Departamento</class>
+    <class>br.edu.ifpb.domain.Gerente</class>
+    <class>br.edu.ifpb.domain.hotel.Hospede</class>
+    <class>br.edu.ifpb.domain.hotel.Hotel</class>
+    <class>br.edu.ifpb.domain.hotel.Hospedagem</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/dac-jpa-20182"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="12345"/>
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+      <!--<property name="eclipselink.logging.level" value="FINE"/>-->
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="ExemploPU2" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>br.edu.ifpb.domain.Endereco</class>
+    <class>br.edu.ifpb.domain.Funcionario</class>
+    <class>br.edu.ifpb.domain.Dependente</class>
+    <class>br.edu.ifpb.domain.Projeto</class>
+    <class>br.edu.ifpb.domain.Departamento</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/dac-jpa-20182"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="12345"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="DEFAULT_PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>br.edu.ifpb.main.a.Projeto</class>
+    <class>br.edu.ifpb.main.a.Departamento</class>
+    <class>br.edu.ifpb.main.a.Endereco</class>
+    <class>br.edu.ifpb.main.a.Funcionario</class>
+    <class>br.edu.ifpb.main.a.Dependente</class>
+    <class>br.edu.ifpb.main.a.Gerente</class>
+    <class>br.edu.ifpb.domain.hotel.s.Hotel</class>
+    <class>br.edu.ifpb.domain.hotel.s.Hospedagem</class>
+    <class>br.edu.ifpb.domain.hotel.s.Hospede</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample"/>
+      <property name="javax.persistence.jdbc.password" value="app"/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+      <property name="javax.persistence.jdbc.user" value="app"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
+</persistence>

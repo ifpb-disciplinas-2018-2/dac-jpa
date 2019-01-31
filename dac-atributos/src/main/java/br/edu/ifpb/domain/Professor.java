@@ -1,7 +1,14 @@
 package br.edu.ifpb.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +20,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Professor implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 //    @GeneratedValue
@@ -20,21 +28,28 @@ public class Professor implements Serializable {
     private double salario;
     private String matricula;
     private int idade;
-//    private List<String> telefones = new ArrayList<>();
-//    private Sexo sexo;
-//    private CPF cpf;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "Telefones")
+    private List<String> telefones = new ArrayList<>();
+    @Enumerated(EnumType.ORDINAL)
+    private Sexo sexo;
 
     public Professor() {
     }
 
-    private Professor(double salario, String matricula, int idade) {
+    private Professor(double salario, String matricula, int idade, Sexo sexo) {
         this.salario = salario;
         this.matricula = matricula;
         this.idade = idade;
+        this.sexo = sexo;
     }
 
-    public static Professor of(double salario, String matricula, int idade) {
-        return new Professor(salario, matricula, idade);
+    public static Professor of(double salario, String matricula, int idade, Sexo sexo) {
+        return new Professor(salario, matricula, idade, sexo);
+    }
+    
+    public void novoTel(String tel){
+        this.telefones.add(tel);
     }
 
     public int getCodigo() {
@@ -68,5 +83,22 @@ public class Professor implements Serializable {
     public void setIdade(int idade) {
         this.idade = idade;
     }
+
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }
+
+    public List<String> getTelefones() {
+        return telefones;
+    }
+
+    public void setTelefones(List<String> telefones) {
+        this.telefones = telefones;
+    }
+    
 
 }
