@@ -12,6 +12,7 @@
         <module>jpa-inicial</module>
         <module>dac-atributos</module>
         <module>jpa-mapeamento</module>
+        <module>jpa-consultas</module>
     </modules>
     <dependencies> 
         <dependency>
