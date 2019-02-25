@@ -3,21 +3,50 @@ package br.edu.ifpb.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
+import javax.persistence.EntityResult;
+import javax.persistence.FieldResult;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SqlResultSetMapping;
+import javax.persistence.SqlResultSetMappings;
 
 /**
  * @author Ricardo Job
  * @mail ricardo.job@ifpb.edu.br
  * @since 24/01/2019, 07:51:52
  */
+@SqlResultSetMappings(
+    {
+        @SqlResultSetMapping(name = "FuncionarioNativoMapping",
+                classes = @ConstructorResult(
+                        targetClass = FuncionarioNativo.class,
+                        columns = {
+                            @ColumnResult(name = "id", type = int.class), 
+                            @ColumnResult(name = "nome")
+                        }
+                )
+        ),
+        @SqlResultSetMapping(name = "FuncionarioMapping",
+                entities = {
+                    @EntityResult(
+                            entityClass = Funcionario.class,
+                            fields = {
+                                @FieldResult(name = "id", column = "id"),
+                                @FieldResult(name = "nome", column = "NOMEEMP")
+                            }
+                    )
+                }
+        )
+    }
+)
 @Entity
 public class Funcionario implements Serializable {
 
@@ -42,7 +71,7 @@ public class Funcionario implements Serializable {
     @ManyToMany(mappedBy = "funcionarios")
 //    @JoinTable(name = "Alocacao")
     private List<Projeto> projetos; // N -> N unidirecional
-    
+
     // MUITOS Funcionarios estão alocados em UM Departamento
     @ManyToOne
     private Departamento departamento; // N -> 1 unidirecional
@@ -135,6 +164,5 @@ public class Funcionario implements Serializable {
     public String toString() {
         return "Funcionario{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", endereco=" + endereco + ", dependentes=" + dependentes + ", projetos=" + projetos + ", departamento=" + departamento + '}';
     }
-    
 
 }

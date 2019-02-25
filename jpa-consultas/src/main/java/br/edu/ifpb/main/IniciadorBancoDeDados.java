@@ -14,12 +14,14 @@ import javax.persistence.EntityManager;
  * @since 06/02/2019, 22:12:03
  */
 public class IniciadorBancoDeDados {
+
     private final EntityManager em;
 
     public IniciadorBancoDeDados(EntityManager em) {
         this.em = em;
     }
-    public void dadosIniciais(){
+
+    public void dadosIniciais() {
         Endereco meuEndereco = new Endereco(
                 "Minha rua", "Meu bairro", "Minha cidade"
         );
@@ -61,7 +63,7 @@ public class IniciadorBancoDeDados {
         );
         Projeto pwi = new Projeto(
                 "PWI"
-        ); 
+        );
         Gerente gerente = new Gerente(
                 "Jo", "123"
         );
@@ -74,7 +76,7 @@ public class IniciadorBancoDeDados {
         Projeto sd = new Projeto(
                 "SD"
         );
-        
+
         //bidirecional
         chaves.adicionar(dac);
         chaves.adicionar(sd);
@@ -93,9 +95,11 @@ public class IniciadorBancoDeDados {
         // bidirecional
         gerente.setDep(uninfo);
         uninfo.setGerente(gerente);
-        
+
         madruga.adicionar(godiles);
         madruga.adicionar(chiquinha);
+        chaves.adicionar(mariana);
+//        chaves.adicionar(jose);
         madruga.adicionar(pwi);
         madruga.adicionar(dac);
         madruga.setDepartamento(uninfo);
@@ -104,6 +108,7 @@ public class IniciadorBancoDeDados {
         em.getTransaction().begin();
         em.persist(meuEndereco);
         em.persist(chiquinha);
+        em.persist(mariana);
         em.persist(chaves);
         em.persist(dac);
         em.persist(pwi);
@@ -120,9 +125,14 @@ public class IniciadorBancoDeDados {
         em.persist(unind);
         em.persist(gerente);
         em.persist(godiles);
-        em.persist(mariana);
         em.persist(jose);
         em.persist(tulio);
+
+//        for (int i = 0; i < 1_000_000; i++) {
+//            em.persist(
+//                    new Dependente(String.valueOf(i))
+//            );
+//        }
         em.getTransaction().commit();
     }
 }

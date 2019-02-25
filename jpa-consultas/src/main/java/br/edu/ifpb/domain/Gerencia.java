@@ -43,6 +43,11 @@ public class Gerencia {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Gerencia{" + "departamento=" + departamento + ", gerente=" + gerente + ", id=" + id + '}';
+    }
     
     
 
